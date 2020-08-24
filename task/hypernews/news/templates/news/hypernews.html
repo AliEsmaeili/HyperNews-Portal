@@ -1,0 +1,20 @@
+{% extends "./base.html" %}
+{% block title %}Hyper news{% endblock %}
+{% block content %}
+    <h2>Hyper news</h2>
+    <form action="/news/" method="get">
+      {% csrf_token %}
+      <input name="q" placeholder="type a news title">
+      <input type="submit" value="Search">
+    </form>
+    {% regroup news_list|dictsortreversed:"created" by created.split.0 as archive %}
+    {% for date, archived_news in archive %}
+    <h4>{{ date }}</h4>
+    <ul>
+    {% for news in archived_news %}
+        <li><a href="/news/{{ news.link }}/">{{ news.title }}</a></li>
+    {% endfor %}
+    </ul>
+    {% endfor %}
+{% endblock %}
+{% block navigation %}<a target="_blank" href="/news/create/">Create news</a>{% endblock %}

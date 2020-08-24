@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    {% block content %}{% endblock %}
+    {% block navigation %}<a target="_blank" href="/news/">News Home</a>{% endblock %}
+</body>
+</html>
